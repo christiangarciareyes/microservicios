@@ -1,6 +1,0 @@
-server:
-  port: 9000
-
-encrypt:
-  key: mitocode-secrets
-  value: '{cipher}6a95b67a840e397779167d8548799840326afc68a8ce0977e9f557d6f19b5861'
