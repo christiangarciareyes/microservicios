@@ -12,12 +12,24 @@ eureka:
 spring:
   data:
     mongodb:
-      #host: localhost
-      #port: 27017
-      #username: mitocode
-      #password: mitocode
-      #database: mitocodedb
       uri: mongodb://mitocode:mitocode@localhost:27017/mitocodedb?authSource=admin
 
 encrypt:
   key: mitocode
+
+# Actuator configuration
+info:
+  app:
+    name: User Service Microservice
+    description: Módulo de la arquitectura que disponibiliza información de los usuarios
+    version: 1.0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /actuator
+  info:
+    env:
+      enabled: true
