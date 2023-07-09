@@ -14,13 +14,29 @@ spring:
   cloud:
     gateway:
       routes: 
+
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/product-service/**
+          filters:
+            - StripPrefix=2
+
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/api/user-service/**
           filters:
             - StripPrefix=2
-            # - CustomFilterMitocode=MitocodeKey, MitocodeValue
-            - AddRequestHeader=MitocodeKey, MitocodeValue
-            - AddResponseHeader=MitocodeHeader, MitocodeHeaderValue
+            - CustomFilterMitocode=MitocodeKey, MitocodeValue
+
+            # - name: CustomFilter:
+            #   args:
+            #     headerKey: MitocodeKey
+            #     headerValue: MitocodeValue
+
+            # - AddRequestHeader=MitocodeKey, MitocodeValue
+            # - AddResponseHeader=MitocodeHeader, MitocodeHeaderValue
             - AddRequestParameter=role, ROLE_USER
+  main:
+    web-application-type: reactive
