@@ -18,5 +18,5 @@ spring:
           #  client-id: 05e7a8bb71ab6f87bbce
           #  client-secret: a66498c3fee0f47ca89f64e31081778c1a2ba459
           google:
-            client-id: 905303725226-mmplrnc3kk333qjcqokkcatuses2r2b0.apps.googleusercontent.com
-            client-secret: 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
+            client-id: 904759840640-622lfq0dltuic1le01o7e51puemvn74q.apps.googleusercontent.com
+            client-secret: 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
