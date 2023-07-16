@@ -25,11 +25,11 @@ resilience4j:
         base-config: circuitBreakerProduct
   timelimiter:
     configs:
-      circuitBreakerProduct:
-        timeoutDuration: 1300
+      timeLimiterProduct:
+        timeoutDuration: 1700
     instances:
       product-cb:
-        base-config: circuitBreakerProduct
+        base-config: timeLimiterProduct
 
 # Cloud Gateway Routes
 spring:
