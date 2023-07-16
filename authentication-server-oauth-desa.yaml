@@ -1,0 +1,14 @@
+server:
+  port: 8088
+
+### Mongo database configuration
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mitocode:mitocode@localhost:27020/mitocodedb?authSource=admin
+
+mitocode:
+  security:
+    client: mitocode
+    secret: mitocode
+    key: mitocode
