@@ -49,6 +49,22 @@ spring:
                 statusCode: 400, 401, 403, 500, 503, 504
                 fallbackUri: forward:/api/user-service/user
 
+        - id: product-query-service
+          uri: lb://product-query-service
+          predicates:
+            - Path=/api/product-query-service/**
+            - Weight=product-query, 5
+          filters:
+            - StripPrefix=2
+
+        - id: product-query-service-tobe
+          uri: lb://product-query-service-tobe
+          predicates:
+            - Path=/api/product-query-service/**
+            - Weight=product-query, 95
+          filters:
+            - StripPrefix=2
+
         - id: user-service
           uri: lb://user-service
           predicates:
@@ -67,11 +83,13 @@ spring:
             - AddRequestParameter=role, ROLE_USER
   main:
     web-application-type: 
-  security:
-    user:
-      name: jchoy
-      password: jchoy
-      role: manager
+    allow-bean-definition-overriding: true
+
+  # security:
+  #   user:
+  #     name: jchoy
+  #     password: jchoy
+  #     roles: ROLE_ADMIN
 
 mitocode:
   security:
@@ -86,6 +104,9 @@ management:
   info:
     env:
       enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
 
 springdoc:
   api-docs:
@@ -94,3 +115,11 @@ springdoc:
   swagger-ui:
     path: swagger-ui.html
     enabled: true
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
