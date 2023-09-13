@@ -44,6 +44,9 @@ management:
   info:
     env:
       enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
 
 springdoc:
   api-docs:
@@ -52,3 +55,18 @@ springdoc:
   swagger-ui:
     path: swagger-ui.html
     enabled: true
+  show-actuator: false
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+
+kafka:
+  mitocode:
+    server: 127.0.0.1
+    port: 9092
+    topic: mitocode
